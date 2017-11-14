@@ -1,0 +1,63 @@
+<p-growl [value]="msgs"></p-growl>
+<div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+    <div class="panel-heading">
+        <div class="row">
+          <div class="col col-xs-6">
+            <div class="sec-title">Listado de eventos</div>
+          </div>
+          <div class="col col-xs-6 text-right">
+            <button type="button" class="btn btn-sm btn-primary btn-create" ng-click="createEvent()">Nuevo evento</button>
+          </div>
+        </div>
+      </div>
+      </div>
+    
+<p-dataTable [value]="events" resizableColumns="true" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]"
+  [responsive]="true">
+
+  <p-column [style]="{'width':'125px','text-align': 'center'}">
+    <ng-template pTemplate="header">
+      <i class="fa fa-cog text-center"></i>
+    </ng-template>
+    <ng-template let-col let-event="rowData" pTemplate="body">
+      <a class="btn btn-default">
+        <i class="fa fa-pencil"></i>
+      </a>
+      <a class="btn btn-default" (click)="confirmDelete(event._id)">
+        <i class="fa fa-trash"></i>
+      </a>
+    </ng-template>
+  </p-column>
+  <p-column field="title" header="Título" [filter]="true" filterPlaceholder="Buscar" [sortable]="true"></p-column>
+  <p-column header="Fecha">
+    <ng-template let-col let-event="rowData" pTemplate="body">
+      <span>
+        {{event.day}}/{{event.month}}/{{event.year}}
+      </span>
+    </ng-template>
+  </p-column>
+  <p-column header="Hora de Inicio" >
+    <ng-template let-col let-event="rowData" pTemplate="body">
+      <span>
+        {{event.startHour.h}}:{{event.startHour.m}}
+      </span>
+    </ng-template>
+  </p-column>
+  <p-column header="Hora de Fin">
+    <ng-template let-col let-event="rowData" pTemplate="body">
+      <span>
+        {{event.endHour.h}}:{{event.endHour.m}}
+      </span>
+    </ng-template>
+  </p-column>
+  <p-column field="faculty.name" header="Organizador" [filter]="true" filterPlaceholder="Buscar" [sortable]="true"></p-column>
+  <p-column field="place" header="Lugar" [filter]="true" filterPlaceholder="Buscar" [sortable]="true"></p-column>
+  <ng-template pTemplate="emptymessage">
+      No se encontraron registros
+  </ng-template>
+</p-dataTable>
+
+<p-confirmDialog></p-confirmDialog>
+
+
+

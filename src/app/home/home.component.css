@@ -1,0 +1,30 @@
+.title-section{
+    font-weight: bold;
+    font-family: "Segoe ui light";
+    font-size: 35px;
+    text-align: center;
+    color: #700000
+}
+h4{
+    font-weight: bold;
+    font-family: "Segoe ui light";
+    text-align: center;
+}
+.btn-sq-lg {
+    width: 150px !important;
+    height: 150px !important;
+}
+
+.btn-violet{
+    background-color:#bd7da9;
+    color:white;
+}
+.btn-violet:active, .btn-violet.active{
+    background: #753b63;
+}
+.btn-violet:hover{
+    background: #9c4f84;
+}
+.button-text{
+    font-size: 16px;
+}

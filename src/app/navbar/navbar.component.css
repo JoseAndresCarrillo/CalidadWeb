@@ -1,0 +1,20 @@
+
+#banner{
+    font-weight: bold;
+    font-family: "Segoe ui light";
+    font-size: 25px;
+    
+}
+
+@media only screen and (max-width:600px){ /* Tablets*/ 
+    #logo{
+        display: block;
+        margin:auto;
+    }
+    #banner{
+        text-align: center;
+    }
+    }
+    
+
+

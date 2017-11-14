@@ -1,0 +1,44 @@
+﻿<div id= "login-container" class="col-md-4 center-block">
+    <div id="logo" class="text-center">
+        <img id="favi" src="favicon.png" alt="UNMSM-logo" width="125" height="150">
+    <h2 align="center">UNMSM-APP</h2>
+    <h4 align="center">Módulo de administración</h4>
+    </div>
+    <br/>
+    <br/>
+    <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+        <div class="form-group">
+            <div class="input-group input-group-lg" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+
+                <span class="input-group-addon">
+                    <span class="fa fa-user"></span>
+                </span>
+                <input type="text" class="form-control" placeholder="Correo electrónico" name="username" [(ngModel)]="model.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                    #username="ngModel" required />
+
+            </div>
+            <div *ngIf="f.submitted && username.hasError('required')" class="alerta">Correo electrónico requerido</div>
+            <div *ngIf="f.submitted && username.hasError('pattern')" class="alerta">Formato incorrecto de correo electrónico </div>
+        </div>
+        <br/>
+        <div class="form-group">
+            <div class="input-group input-group-lg" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                <span class="input-group-addon">
+                    <span class="fa fa-unlock"></span>
+                </span>
+                <input type="password" class="form-control" placeholder="Contraseña" name="password" [(ngModel)]="model.password" #password="ngModel"
+                    required />
+            </div>
+            <div *ngIf="f.submitted && !password.valid" class="alerta">Password requerido</div>
+        </div>
+        <br/>
+        <br/>
+        <div class="form-group" align="center">
+            <button type="submit" [disabled]="loading" class="btn btn-primary btn-block">
+                <i class="fa fa-sign-in"></i> Entrar</button>
+            <br/>
+            <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+            />
+        </div>
+    </form>
+</div>

@@ -1,0 +1,130 @@
+<header>
+<div id="banner" align="left" class="page-header">
+    <img id="logo" width="50" height="60" align="bottom" src="favicon.png" /> 
+     UNMSM-APP: Administrador del sistema
+</div>
+</header>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" routerLink="/">
+                <i class="fa fa-home"></i>
+                Inicio
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="eventos-dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-calendar-check-o"></i>
+                        Eventos
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a routerLink="/new-event">Crear nuevo evento</a>
+                        </li>
+                        <li>
+                            <a routerLink="/new-event">Modificar evento</a>
+                        </li>
+                        <li>
+                            <a routerLink="/events-list">Listado de eventos</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li class="Tipos-dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-star"></i>
+                        Categorías de Eventos
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#">Crear nueva categoría</a>
+                        </li>
+                        <li>
+                            <a href="#">Modificar categoría</a>
+                        </li>
+                        <li>
+                            <a routerLink="/eventTypes-list">Listado de categorías</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li class="Tipos-dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-university"></i>
+                        Facultades
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#">Ingresar nueva facultad</a>
+                        </li>
+                        <li>
+                            <a href="#">Modificar facultad</a>
+                        </li>
+                        <li>
+                            <a routerLink="/faculties-list">Listado de facultades</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav">
+                    <li class="Tipos-dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-map-marker"></i>
+                            Lugares
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#">Registrar nuevo lugar</a>
+                            </li>
+                            <li>
+                                <a href="#">Modificar datos del lugar</a>
+                            </li>
+                            <li>
+                                <a routerLink="/places-list">Listado de lugares</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#">¡Hola {{currentUser.admin.user.name.first}} {{currentUser.admin.user.name.last}}!</a>
+                </li>
+                <li>
+                    <button type="button" class="btn btn-default navbar-btn" [routerLink]="['/login']">
+                        <i class="fa fa-power-off"></i>
+                        Cerrar sesión
+                    </button>
+                </li>
+            </ul>
+
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+<main>
+        <alert></alert>
+        <router-outlet></router-outlet>
+        <hr/>
+</main>

@@ -1,0 +1,44 @@
+.btn {
+    padding: 14px 24px;
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+ 
+.btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0 none;
+}
+ 
+.btn-primary {
+    background: #780000;
+    color: #ffffff;
+}
+ 
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background:#900000;
+}
+ 
+.btn-primary:active, .btn-primary.active {
+    background: #4F0000;
+    box-shadow: none;
+}
+
+.alerta{
+    color: #B00000;
+}
+
+@media only screen and (max-width:600px){ /* Tablets*/ 
+    #favi{
+        display: block;
+        margin:auto;
+        width: 75px;
+        height: 90px;
+    }
+    }
+#login-container{
+    margin-left:auto;
+    margin-right: auto;
+    margin-top:8%;
+    float:none;
+}

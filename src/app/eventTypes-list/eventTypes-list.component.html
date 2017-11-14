@@ -1,0 +1,42 @@
+<p-growl [value]="msgs"></p-growl>
+<div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+    <div class="panel-heading">
+        <div class="row">
+          <div class="col col-xs-6">
+            <div class="sec-title">Listado de categorías de eventos</div>
+          </div>
+          <div class="col col-xs-6 text-right">
+            <button type="button" class="btn btn-sm btn-primary btn-create" ng-click="createEvent()">Nueva categoría</button>
+          </div>
+        </div>
+      </div>
+      </div>
+    
+<p-dataTable [value]="eventTypes" resizableColumns="true" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]"
+  [responsive]="true">
+
+  <p-column [style]="{'width':'125px','text-align': 'center'}">
+    <ng-template pTemplate="header">
+      <i class="fa fa-cog text-center"></i>
+    </ng-template>
+    <ng-template let-col let-eventType="rowData" pTemplate="body">
+      <a class="btn btn-default">
+        <i class="fa fa-pencil"></i>
+      </a>
+      <a class="btn btn-default" (click)="confirmDelete(eventType._id)">
+        <i class="fa fa-trash"></i>
+      </a>
+    </ng-template>
+  </p-column>
+  <p-column field="_id" header="ID" [filter]="true" filterPlaceholder="Buscar" [sortable]="true"></p-column>
+  <p-column field="name" header="Nombre" [filter]="true" filterPlaceholder="Buscar" [sortable]="true"></p-column>
+  <p-column field="description" header="Descripción"  filterPlaceholder="Buscar" [sortable]="true"></p-column>
+  <ng-template pTemplate="emptymessage">
+      No se encontraron registros
+  </ng-template>
+</p-dataTable>
+
+<p-confirmDialog></p-confirmDialog>
+
+
+
