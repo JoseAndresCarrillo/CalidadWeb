@@ -1,0 +1,74 @@
+<p-growl [value]="msgs"></p-growl>
+<div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+  <div class="panel-heading">
+    <div class="row">
+      <div class="col col-xs-6">
+        <div class="sec-title">Listado de escuelas</div>
+      </div>
+      <div class="col col-xs-6 text-right">
+        <button type="button" class="btn btn-sm btn-primary btn-create" (click)="showDialogNew()">Nueva escuela</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-dataTable [value]="majors" resizableColumns="true" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]"
+  [responsive]="true">
+
+  <p-column [style]="{'width':'125px','text-align': 'center'}">
+    <ng-template pTemplate="header">
+      <i class="fa fa-cog text-center"></i>
+    </ng-template>
+    <ng-template let-major="rowData" pTemplate="body">
+      <a class="btn btn-default" (click)="showDialogUpdate(major)">
+        <i class="fa fa-pencil"></i>
+      </a>
+      <a class="btn btn-default" (click)="confirmDelete(major._id,major.name)">
+        <i class="fa fa-trash"></i>
+      </a>
+    </ng-template>
+  </p-column>
+  <p-column field="_id" header="Código" [filter]="true" filterPlaceholder="Buscar" [sortable]="true"></p-column>
+  <p-column field="name" header="Nombre" [filter]="true" filterPlaceholder="Buscar" [sortable]="true"></p-column>
+  <p-column field="faculty.name" header="Facultad" [filter]="true" filterField="faculty.name" filterPlaceholder="Buscar" [sortable]="true"
+    sortField="faculty.name"></p-column>
+  <ng-template pTemplate="emptymessage">
+    No se encontraron registros
+  </ng-template>
+</p-dataTable>
+<p-confirmDialog acceptLabel="Sí, eliminar">
+</p-confirmDialog>
+<p-dialog header="Registrar nueva escuela" modal="true" [(visible)]="displayNew" [responsive]="true">
+
+  <h4 class="first">Código</h4>
+  <input id="input-id" type="number" size="10" pInputText [(ngModel)]="model._id" required>
+  <br/>
+  <br/>
+  <h4 class="first">Nombre</h4>
+  <input id="input-name" type="text" size="55" pInputText [(ngModel)]="model.name" required>
+  <br/>
+  <br/>
+  <h4 class="first">Facultad</h4>
+  <p-dropdown appendTo="body" [options]="faculties" [(ngModel)]="selectedFaculty"  [style]="{width: '90%'}" placeholder="Seleccione una facultad" optionLabel="name" ></p-dropdown>
+  <br/>
+  <br/>
+    <p-footer>
+      <button type="button" class="ui-button-success" pButton icon="fa-check" (click)="createMajor()" label="Registrar"></button>
+      <button type="button" class="ui-button-danger" pButton icon="fa-close" (click)="hideDialogNew()" label="Cancelar"></button>
+    </p-footer>
+</p-dialog>
+<p-dialog header="Modificar categoría" modal="true" [(visible)]="displayUpdate" [responsive]="true">
+
+  <h4 class="first">Nombre</h4>
+  <input id="input-name" type="text" size="50" pInputText [(ngModel)]="modelTemp.name" required>
+  <br/>
+  <br/>
+  <h4 class="first">Facultad</h4>
+  <p-dropdown appendTo="body" [options]="faculties" [(ngModel)]="selectedFaculty"  [style]="{width: '90%'}" placeholder="Seleccione una facultad" optionLabel="name" ></p-dropdown>
+  <br/>
+  <br/>
+    <p-footer>
+      <button type="button" class="ui-button-success" pButton icon="fa-check" (click)="updateMajor()" label="Modificar"></button>
+      <button type="button" class="ui-button-danger" pButton icon="fa-close" (click)="hideDialogUpdate()" label="Cancelar"></button>
+    </p-footer>
+</p-dialog>

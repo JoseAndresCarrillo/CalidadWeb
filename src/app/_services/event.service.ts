@@ -10,7 +10,7 @@ export class EventService {
         return this.http.get('/admin/events').map((response: Response) => response.json());
     }
 
-    create(event: any) {
+    create(event: Event) {
         return this.http.post('/admin/registerEvent', event);
     }
 

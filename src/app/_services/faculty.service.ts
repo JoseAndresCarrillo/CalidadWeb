@@ -15,7 +15,7 @@ export class FacultyService {
     }
 
     update(faculty: Faculty) {
-        return this.http.post('/admin/editFaculty/', faculty);
+        return this.http.post('/admin/editFaculties', faculty);
     }
 
     delete(_id: string) {

@@ -1,4 +1,11 @@
 #event-form{
-    margin-top:1%;
+    margin-top:2%;
     margin-bottom: 2%;
+    margin-left: 5%;
 }
+.sec-title {
+    font-family: 'Segoe UI Light';
+    font-size: 20px;
+    font-weight: bold;
+  }
+  

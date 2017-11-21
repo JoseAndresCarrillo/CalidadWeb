@@ -1,71 +1,40 @@
-<!--<form id="event-form" class="col-md-8 center-block">
-  <div class="form-group">
-    <label for="exampleFormControlInput1">Título</label>
-    <input class="form-control" id="exampleFormControlInput1">
-  </div>
-  <div class="form-group">
-    <label for="exampleFormControlSelect1">Fecha</label>
-    <input class="form-control" id="exampleFormControlInput1">
-  </div>
-  <div class="form-group">
-      <label for="exampleFormControlSelect1">Hora de inicio</label>
-      <input class="form-control" id="exampleFormControlInput1">
-  </div>
-  <div class="form-group">
-      <label for="exampleFormControlSelect1">Hora de ifin</label>
-      <input class="form-control" id="exampleFormControlInput1">
-  </div>
-  <div class="form-group">
-      <label for="exampleFormControlSelect1">Lugar</label>
-      <input class="form-control" id="exampleFormControlInput1">
-  </div>
-  <div class="form-group">
-      <label for="exampleFormControlSelect1">Organizador</label>
-      <input class="form-control" id="exampleFormControlInput1">
-  </div>
-  <div class="form-group">
-      <label for="exampleFormControlSelect1">Tipo de evento</label>
-      <input class="dropdown" id="exampleFormControlInput1">
-  </div>
-  <div class="form-group">
-    <label for="exampleFormControlTextarea1">Descripción</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-  </div>
-</form>
 
-<p-growl [value]="msgs"></p-growl>-->
-<p-panel header="Nuevo evento">
-  <h3 class="first">Título</h3>
-  <input id="input" type="text" size="30" pInputText [(ngModel)]="model.title"> 
-  <h3 class="first">Descripción</h3>
-  <input id="input" type="text" size="30" pInputText [(ngModel)]="model.description"> 
-  <h3 class="first">Día</h3>
-  <input id="input" type="text" size="30" pInputText [(ngModel)]="model.day"> 
-  <h3 class="first">Mes</h3>
-  <input id="input" type="text" size="30" pInputText [(ngModel)]="model.month"> 
-  <h3 class="first">Año</h3>
-  <input id="input" type="text" size="30" pInputText [(ngModel)]="model.year"> 
+<p-growl [value]="msgs"></p-growl>
+
+<div class="ui-g">
+<div class="ui-lg-12 ui-md-12 ui-sm-12 center-login">
+<p-panel >
+    <p-header class="sec-title">
+        Agregar nuevo evento
+    </p-header>
+
+  <div id=event-form>
+  <h4 class="first">Título</h4>
+  <input id="input-title" type="text" [(ngModel)]="model.title" pTooltip="Ingrese el título del evento" pInputText> 
+  <h4 class="first">Descripción</h4>
+  <textarea rows="5" cols="30" pInputTextarea  [(ngModel)]="model.description" pTooltip="Detalle en que consiste el evento"></textarea>
+  <h4 class="first">Fecha del evento</h4>
+  <p-calendar [(ngModel)]="date1"   [locale]="es" showButtonBar="true" dateFormat="dd/mm/yy" [style]="{width: '100%'}"></p-calendar>
+  <h4 class="first">Hora de inicio</h4>
+  <p-calendar [(ngModel)]="start"  [timeOnly]="true" [style]="{width: '100%'}"></p-calendar>
   <br/>
-  <h3 class="first">Hora de inicio</h3>
-  <h4 class="first">Hora</h4>
-  <input id="input" type="text" size="30" pInputText [(ngModel)]="model.startHour.h"> 
-  <h4 class="first">Minutos</h4>
-  <input id="input" type="text" size="30" pInputText [(ngModel)]="model.startHour.m"> 
+  <h4 class="first">Hora de finalización</h4>
+  <p-calendar [(ngModel)]="end"  [timeOnly]="true" [style]="{width: '100%'}"></p-calendar>
   <br/>
-  <h3 class="first">Hora de finalización</h3>
-  <h4 class="first">Hora</h4>
-  <input id="input" type="text" size="30" pInputText [(ngModel)]="model.endHour.h"> 
-  <h4 class="first">Minutos</h4>
-  <input id="input" type="text" size="30" pInputText [(ngModel)]="model.endHour.m"> 
-  <br/>
-  <h3 class="first">Facultad</h3>
-  <input id="input" type="text" size="30" pInputText [(ngModel)]="model.faculty">
-  <h3 class="first">Lugar</h3>
-  <input id="input" type="text" size="30" pInputText [(ngModel)]="model.place">
-  <h3 class="first">Tipo de evento</h3>
-  <input id="input" type="text" size="30" pInputText [(ngModel)]="model.typeEvent">
+  <h4 class="first">Facultad organizadora</h4>
+  <p-dropdown appendTo="body"  [options]="faculties" [(ngModel)]="selectedFaculty"  placeholder="Seleccione una facultad" optionLabel="name" ></p-dropdown>
+  <h4 class="first">Lugar</h4>
+  <input id="input-place" type="text"  pInputText [(ngModel)]="model.place" pTooltip="Indique el lugar donde se realizará el evento">
+  <h4 class="first">Categoría de evento</h4>
+  <p-dropdown appendTo="body"  [options]="eventTypes" [(ngModel)]="selectedEventType"   placeholder="Seleccione una categoría" optionLabel="name" ></p-dropdown>
   <br/>
   <br/>
-  <button pButton type="button" icon="fa-check" (click)="createEvent()" label="Guardar"></button>
-  
+  <button pButton type="button" icon="fa-check"  label="Guardar" (click)="createEvent()"></button>
+  </div>
 </p-panel>
+</div>
+</div>
+
+
+
+

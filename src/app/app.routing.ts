@@ -6,6 +6,7 @@ import { EventListComponent } from './events-list/events-list.component';
 import { EventTypesListComponent } from './eventTypes-list/eventTypes-list.component';
 import { FacultiesListComponent } from './faculties-list/faculties-list.component';
 import { PlacesListComponent } from './places-list/places-list.component';
+import { MajorsListComponent } from './majors-list/majors-list.component';
 import { NewEventComponent } from './new-event/new-event.component';
 import { AuthGuard } from './_guards/index';
 
@@ -21,6 +22,7 @@ const appRoutes: Routes = [
                 { path: 'new-event', component: NewEventComponent, canActivate: [AuthGuard] },
                 { path: 'faculties-list', component: FacultiesListComponent, canActivate: [AuthGuard] },
                 { path: 'places-list', component: PlacesListComponent, canActivate: [AuthGuard] },
+                { path: 'majors-list', component: MajorsListComponent, canActivate: [AuthGuard] },
                 ]
       },
 

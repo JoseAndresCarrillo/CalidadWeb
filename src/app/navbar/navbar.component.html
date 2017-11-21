@@ -1,7 +1,7 @@
 <header>
 <div id="banner" align="left" class="page-header">
     <img id="logo" width="50" height="60" align="bottom" src="favicon.png" /> 
-     UNMSM-APP: Administrador del sistema
+     UNMSM-Móvil: Administrador del sistema
 </div>
 </header>
 <nav class="navbar navbar-default">
@@ -35,10 +35,7 @@
                             <a routerLink="/new-event">Crear nuevo evento</a>
                         </li>
                         <li>
-                            <a routerLink="/new-event">Modificar evento</a>
-                        </li>
-                        <li>
-                            <a routerLink="/events-list">Listado de eventos</a>
+                            <a routerLink="/events-list">Gestionar eventos</a>
                         </li>
                     </ul>
                 </li>
@@ -52,13 +49,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#">Crear nueva categoría</a>
-                        </li>
-                        <li>
-                            <a href="#">Modificar categoría</a>
-                        </li>
-                        <li>
-                            <a routerLink="/eventTypes-list">Listado de categorías</a>
+                            <a routerLink="/eventTypes-list">Gestionar categorías</a>
                         </li>
                     </ul>
                 </li>
@@ -72,17 +63,27 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#">Ingresar nueva facultad</a>
-                        </li>
-                        <li>
-                            <a href="#">Modificar facultad</a>
-                        </li>
-                        <li>
-                            <a routerLink="/faculties-list">Listado de facultades</a>
+                            <a routerLink="/faculties-list">Gestionar facultades</a>
                         </li>
                     </ul>
                 </li>
             </ul>
+
+            <ul class="nav navbar-nav">
+                    <li class="Tipos-dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-graduation-cap"></i>
+                            Escuelas
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a routerLink="/majors-list">Gestionar escuelas</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+    
 
             <ul class="nav navbar-nav">
                     <li class="Tipos-dropdown">
@@ -94,9 +95,6 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="#">Registrar nuevo lugar</a>
-                            </li>
-                            <li>
-                                <a href="#">Modificar datos del lugar</a>
                             </li>
                             <li>
                                 <a routerLink="/places-list">Listado de lugares</a>

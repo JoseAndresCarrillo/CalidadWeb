@@ -6,7 +6,7 @@
             <div class="sec-title">Listado de eventos</div>
           </div>
           <div class="col col-xs-6 text-right">
-            <button type="button" class="btn btn-sm btn-primary btn-create" ng-click="createEvent()">Nuevo evento</button>
+            <button type="button" class="btn btn-sm btn-primary btn-create" routerLink="/new-event">Nuevo evento</button>
           </div>
         </div>
       </div>
@@ -19,8 +19,8 @@
     <ng-template pTemplate="header">
       <i class="fa fa-cog text-center"></i>
     </ng-template>
-    <ng-template let-col let-event="rowData" pTemplate="body">
-      <a class="btn btn-default">
+    <ng-template let-event="rowData" pTemplate="body">
+      <a class="btn btn-default"  (click)="showDialogUpdate(event)">
         <i class="fa fa-pencil"></i>
       </a>
       <a class="btn btn-default" (click)="confirmDelete(event._id)">
@@ -29,22 +29,36 @@
     </ng-template>
   </p-column>
   <p-column field="title" header="Título" [filter]="true" filterPlaceholder="Buscar" [sortable]="true"></p-column>
+  <p-column header="Categoría" [filter]="true" filterField="typeEvent.name" filterPlaceholder="Buscar" [sortable]="true" sortField="typeEvent.name">
+      <ng-template let-event="rowData" pTemplate="body">
+        <span>
+          {{event.typeEvent.name}}
+        </span>
+      </ng-template>
+    </p-column>
+    <p-column header="Descripción" [style]="{'width':'95px','text-align': 'center'}">  
+        <ng-template let-event="rowData" pTemplate="body">
+          <a class="btn btn-default" (click)="showDescription(event)">
+            <i class="fa fa-search"></i>
+          </a>  
+        </ng-template>
+      </p-column>
   <p-column header="Fecha">
-    <ng-template let-col let-event="rowData" pTemplate="body">
+    <ng-template let-event="rowData" pTemplate="body">
       <span>
         {{event.day}}/{{event.month}}/{{event.year}}
       </span>
     </ng-template>
   </p-column>
   <p-column header="Hora de Inicio" >
-    <ng-template let-col let-event="rowData" pTemplate="body">
+    <ng-template let-event="rowData" pTemplate="body">
       <span>
         {{event.startHour.h}}:{{event.startHour.m}}
       </span>
     </ng-template>
   </p-column>
   <p-column header="Hora de Fin">
-    <ng-template let-col let-event="rowData" pTemplate="body">
+    <ng-template let-event="rowData" pTemplate="body">
       <span>
         {{event.endHour.h}}:{{event.endHour.m}}
       </span>
@@ -57,7 +71,42 @@
   </ng-template>
 </p-dataTable>
 
-<p-confirmDialog></p-confirmDialog>
+<p-confirmDialog acceptLabel="Sí, eliminar">
+</p-confirmDialog>
+
+<p-dialog  modal="true" [(visible)]="displayDescription" [responsive]="true">
+    <p-header>
+        {{eventS.title}}
+    </p-header>
+    {{eventS.description}}
+</p-dialog>
+
+<p-dialog header="Modificar evento" modal="true" [(visible)]="displayUpdate" [responsive]="true">
+    <h4 class="first">Título</h4>
+    <input id="input-title" type="text" [(ngModel)]="modelTemp.title" pTooltip="Ingrese el título del evento" pInputText> 
+    <h4 class="first">Descripción</h4>
+    <textarea rows="5" cols="30" pInputTextarea  [(ngModel)]="modelTemp.description" pTooltip="Detalle en que consiste el evento" autoResize="autoResize"></textarea>
+    <h4 class="first">Fecha del evento</h4>
+    <p-calendar [(ngModel)]="date1"   [locale]="es" showButtonBar="true" dateFormat="dd/mm/yy" [style]="{width: '100%'}"></p-calendar>
+    <h4 class="first">Hora de inicio</h4>
+    <p-calendar [(ngModel)]="start"  [timeOnly]="true" [style]="{width: '100%'}"></p-calendar>
+    <br/>
+    <h4 class="first">Hora de finalización</h4>
+    <p-calendar [(ngModel)]="end"  [timeOnly]="true" [style]="{width: '100%'}"></p-calendar>
+    <br/>
+    <h4 class="first">Facultad organizadora</h4>
+    <p-dropdown appendTo="body"  [options]="faculties" [(ngModel)]="selectedFaculty"  placeholder="Seleccione una facultad" optionLabel="name" [style]="{width: '90%'}"></p-dropdown>
+    <h4 class="first">Lugar</h4>
+    <input id="input-place" type="text"  pInputText [(ngModel)]="modelTemp.place" pTooltip="Indique el lugar donde se realizará el evento">
+    <h4 class="first">Categoría de evento</h4>
+    <p-dropdown appendTo="body"  [options]="eventTypes" [(ngModel)]="selectedEventType"   placeholder="Seleccione una categoría" optionLabel="name" [style]="{width: '90%'}" ></p-dropdown>
+    <br/>
+    <br/>
+          <p-footer>
+              <button type="button" class="ui-button-success" pButton icon="fa-check" (click)="updateEvent()" label="Modificar"></button>
+              <button type="button" class="ui-button-danger" pButton icon="fa-close" (click)="hideDialogUpdate()" label="Cancelar"></button>
+          </p-footer>
+    </p-dialog>
 
 
 

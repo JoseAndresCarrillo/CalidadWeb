@@ -6,7 +6,7 @@
             <div class="sec-title">Listado de categorías de eventos</div>
           </div>
           <div class="col col-xs-6 text-right">
-            <button type="button" class="btn btn-sm btn-primary btn-create" ng-click="createEvent()">Nueva categoría</button>
+            <button type="button" class="btn btn-sm btn-primary btn-create" (click)="showDialogNew()">Nueva categoría</button>
           </div>
         </div>
       </div>
@@ -19,24 +19,53 @@
     <ng-template pTemplate="header">
       <i class="fa fa-cog text-center"></i>
     </ng-template>
-    <ng-template let-col let-eventType="rowData" pTemplate="body">
-      <a class="btn btn-default">
+    <ng-template let-eventType="rowData" pTemplate="body">
+      <a class="btn btn-default" (click)="showDialogUpdate(eventType)">
         <i class="fa fa-pencil"></i>
       </a>
-      <a class="btn btn-default" (click)="confirmDelete(eventType._id)">
+      <a class="btn btn-default" (click)="confirmDelete(eventType._id,eventType.name)">
         <i class="fa fa-trash"></i>
       </a>
     </ng-template>
   </p-column>
-  <p-column field="_id" header="ID" [filter]="true" filterPlaceholder="Buscar" [sortable]="true"></p-column>
   <p-column field="name" header="Nombre" [filter]="true" filterPlaceholder="Buscar" [sortable]="true"></p-column>
-  <p-column field="description" header="Descripción"  filterPlaceholder="Buscar" [sortable]="true"></p-column>
+  <p-column field="description" header="Descripción"  [filter]="true" filterPlaceholder="Buscar" [sortable]="true"></p-column>
   <ng-template pTemplate="emptymessage">
       No se encontraron registros
   </ng-template>
 </p-dataTable>
+<p-confirmDialog acceptLabel="Sí, eliminar">
+</p-confirmDialog>
+<p-dialog header="Registrar nueva categoría" modal="true" [(visible)]="displayNew" [responsive]="true">
 
-<p-confirmDialog></p-confirmDialog>
+    <h4 class="first">Nombre</h4>
+    <input id="input-name" type="text" size="20" pInputText [(ngModel)]="model.name" required> 
+    <br/>
+    <br/> 
+    <h4 class="first">Descripción</h4>
+    <input id="input-description" type="text" size="60" pInputText [(ngModel)]="model.description" required>
+    <br/>
+    <br/>  
+      <p-footer>
+          <button type="button" class="ui-button-success" pButton icon="fa-check" (click)="createNewEventType()" label="Registrar"></button>
+          <button type="button" class="ui-button-danger" pButton icon="fa-close" (click)="hideDialogNew()" label="Cancelar"></button>
+      </p-footer>
+</p-dialog>
+<p-dialog header="Modificar categoría" modal="true" [(visible)]="displayUpdate" [responsive]="true">
+    
+        <h4 class="first">Nombre</h4>
+        <input id="input-name" type="text" size="20" pInputText [(ngModel)]="modelTemp.name">
+        <br/>
+        <br/> 
+        <h4 class="first">Descripción</h4>
+        <input id="input-description" type="text" size="60" pInputText [(ngModel)]="modelTemp.description">
+        <br/>
+        <br/>
+          <p-footer>
+              <button type="button" class="ui-button-success" pButton icon="fa-check" (click)="updateEventType()" label="Modificar"></button>
+              <button type="button" class="ui-button-danger" pButton icon="fa-close" (click)="hideDialogUpdate()" label="Cancelar"></button>
+          </p-footer>
+    </p-dialog>
 
 
 

@@ -1,15 +1,19 @@
 export class StartHour {
     h: string;
     m: string;
-    constructor() { 
-    }
+    constructor(){
+        this.h='';
+        this.m='';
+    }    
 }
 
 export class EndHour {
     h: string;
     m: string;
-    constructor() { 
-    }
+    constructor(){    
+        this.h='';
+        this.m='';
+    }  
 }
 
 export class Event {
@@ -22,8 +26,16 @@ export class Event {
     endHour: EndHour;
     faculty: number;
     place: string;
-    typeEvent: number;
-    constructor() { 
+    typeEvent: string;
+   constructor(){
+        this.title='';
+        this.description='';
+        this.day='';
+        this.month='';
+        this.year='';
+        this.faculty=0;
+        this.place='';
+        this.typeEvent='';
         this.endHour=new EndHour();
         this.startHour=new StartHour();
     }
